@@ -1,4 +1,4 @@
-Assignment heursitics 2015-1016
+Assignment heuristics 2015-1016
 
 The Day-on/Day-off scheduling problem (DODOSP) asks for the assignment of a number employees to on and off periods in
 such a way that, over a given timespan of t days, a certain minimal demand b_s for each day 0 <= s < t is satisfied.
