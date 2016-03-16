@@ -1,5 +1,5 @@
 import random
-
+import numpy as np
 
 class Generator(object):
 
@@ -33,14 +33,48 @@ class Generator(object):
             elif consecutive_numbers >= self.dmax:
                 return [0, self.generate_solutions(length-1, 0, 1)]
             else:
-                return [1, self.generate_solutions(length-1, 1, consecutive_numbers+1)], [0, self.generate_solutions(length-1, 0, 1)]
+                return [1, self.generate_solutions(length-1, 1, consecutive_numbers+1)], \
+                       [0, self.generate_solutions(length-1, 0, 1)]
         elif last_number == 0:
             if consecutive_numbers < self.omin:
                 return [0, self.generate_solutions(length-1, 0, consecutive_numbers+1)]
             elif consecutive_numbers >= self.omax:
                 return [1, self.generate_solutions(length-1, 1, 1)]
             else:
-                return [0, self.generate_solutions(length-1, 0, consecutive_numbers+1)], [1, self.generate_solutions(length-1, 1, 1)]
+                return [0, self.generate_solutions(length-1, 0, consecutive_numbers+1)], \
+                       [1, self.generate_solutions(length-1, 1, 1)]
+
+    def is_valid(self, permutation):
+        head = permutation[0]
+        last = permutation[-1]
+        conseqs_head = 0
+        conseqs_end = 0
+        stop_head = False
+        stop_tail = False
+        for index, element in enumerate(permutation):
+            index = -(index+1)
+            element2 = permutation[index]
+            if element == head and not stop_head:
+                conseqs_head += 1
+            else:
+                stop_head = True
+            if element2 == last and not stop_tail:
+                conseqs_end += 1
+            else:
+                stop_tail = True
+            if stop_head and stop_tail:
+                break
+        if head == 0:
+            bool1 = self.omin <= conseqs_head <= self.omax
+        else:
+            bool1 = self.dmin <= conseqs_head <= self.dmax
+        if last == 0:
+            bool2 = self.omin <= conseqs_end <= self.omax
+        else:
+            bool2 = self.dmin <= conseqs_end <= self.dmax
+        return bool1 and bool2
+
+
 
 
 

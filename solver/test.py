@@ -9,7 +9,6 @@ def flatten(element, ll):
             if len(element) == 0:
                 res = ll.couple()
                 possibles.append(res)
-                print(res)
             else:
                 head = element[0]
                 tail = element[1]
@@ -27,14 +26,34 @@ def flatten(element, ll):
             ll.add(element)
 
 
-generator = Generator(6, 3, 5, 2, 3)
+generator = Generator(demand_bound=6, dmin=2, dmax=4, omin=2, omax=4)
 startTime = time.time()
-solutions = generator.generate_solutions(5)
+solutions = generator.generate_solutions(7)
 stopTime = time.time()
 print(str(stopTime-startTime))
 ll = LinkedList()
-
 flatten(solutions, ll)
+filtered_solutions = list()
+for solution in possibles:
+    if generator.is_valid(solution):
+        filtered_solutions.append(solution)
+permutations = list()
+for a in filtered_solutions:
+    n = len(a)
+    permutations.append([[a[i - j] for i in range(n)] for j in range(n)])
+
+filtered_permutations = list()
+for permutation_row in permutations:
+    for permutation in permutation_row:
+        if permutation not in filtered_permutations and generator.is_valid(permutation):
+            filtered_permutations.append(permutation)
+filtered_permutations = filtered_permutations
+print ""
+print "Filtered permutations:"
+for permutation in filtered_permutations:
+    print permutation
+print str(len(filtered_permutations))+" valid permutations"
+
 
 
 #print(solutions)
