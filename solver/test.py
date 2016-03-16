@@ -7,13 +7,14 @@ possibles = list()
 def flatten(element, ll):
         if isinstance(element, list):
             if len(element) == 0:
-                print(ll.couple())
-                return
-            print("sup")
-            head = element[0]
-            tail = element[1]
-            ll.add(head)
-            flatten(tail, ll)
+                res = ll.couple()
+                print(res)
+            else:
+                print("sup")
+                head = element[0]
+                tail = element[1]
+                ll.add(head)
+                flatten(tail, ll)
         elif isinstance(element, tuple):
             # splits de linked list
             fst = element[0]
