@@ -1,5 +1,6 @@
 from generator import Generator
 from linked_list import LinkedList
+import time
 
 possibles = list()
 
@@ -26,11 +27,14 @@ def flatten(element, ll):
 
 
 generator = Generator(6, 3, 5, 2, 3)
+startTime = time.time()
 solutions = generator.generate_solutions(5)
+stopTime = time.time()
+print str(stopTime-startTime)
 ll = LinkedList()
 
 flatten(solutions, ll)
 
 
-print(solutions)
+#print(solutions)
 
