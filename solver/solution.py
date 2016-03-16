@@ -29,17 +29,17 @@ def main(argv):
     ondaysmax =  args.ondaymax
     demand = args.demand
     # Set some default values
-    if timespan == None:
+    if timespan is None:
         timespan = 7
-    if offdaysmin == None:
+    if offdaysmin is None:
         offdaysmin = 1
-    if offdaysmax == None:
+    if offdaysmax is None:
         offdaysmax = 2
-    if ondaysmin == None:
+    if ondaysmin is None:
         ondaysmin = 1
-    if ondaysmax == None:
+    if ondaysmax is None:
         ondaysmax = 4
-    if demand == None or len(demand) < timespan or len(demand) > timespan:
+    if demand is None or len(demand) < timespan or len(demand) > timespan:
         print("There was an issue with the array of demand values. "
               "Make sure it is exactly as long as the timespan you provided! We'll just use random values otherwise \n")
         demand = generate_demand(timespan)
