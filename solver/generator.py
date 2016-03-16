@@ -45,34 +45,39 @@ class Generator(object):
                        [1, self.generate_solutions(length-1, 1, 1)]
 
     def is_valid(self, permutation):
-        head = permutation[0]
-        last = permutation[-1]
-        conseqs_head = 0
-        conseqs_end = 0
-        stop_head = False
-        stop_tail = False
-        for index, element in enumerate(permutation):
-            index = -(index+1)
-            element2 = permutation[index]
-            if element == head and not stop_head:
-                conseqs_head += 1
+        max_conseq_ones = 0
+        min_conseq_ones = np.inf
+        max_conseq_zeros = 0
+        min_conseq_zeros = np.inf
+        conseq_ones = 0
+        conseq_zeros = 0
+        previous_element = None
+        for element in permutation:
+            if previous_element is not None:
+                if element == previous_element:
+                    if element == 0:
+                        conseq_zeros += 1
+                    else:
+                        conseq_ones += 1
+                else:
+                    if previous_element == 1:
+                        if max_conseq_ones < conseq_ones:
+                            max_conseq_ones = conseq_ones
+                        if min_conseq_ones > conseq_ones:
+                            min_conseq_ones = conseq_ones
+                        conseq_ones = 0
+                    else:
+                        if max_conseq_zeros < conseq_zeros:
+                            max_conseq_zeros = conseq_zeros
+                        if min_conseq_zeros > conseq_zeros:
+                            min_conseq_zeros = conseq_zeros
+                        conseq_zeros = 0
             else:
-                stop_head = True
-            if element2 == last and not stop_tail:
-                conseqs_end += 1
-            else:
-                stop_tail = True
-            if stop_head and stop_tail:
-                break
-        if head == 0:
-            bool1 = self.omin <= conseqs_head <= self.omax
-        else:
-            bool1 = self.dmin <= conseqs_head <= self.dmax
-        if last == 0:
-            bool2 = self.omin <= conseqs_end <= self.omax
-        else:
-            bool2 = self.dmin <= conseqs_end <= self.dmax
-        return bool1 and bool2
+                if element == 1:
+                    conseq_ones += 1
+                else:
+                    conseq_zeros += 1
+            previous_element = element
 
 
 

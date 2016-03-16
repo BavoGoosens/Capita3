@@ -26,7 +26,7 @@ def flatten(element, ll):
             ll.add(element)
 
 
-generator = Generator(demand_bound=6, dmin=2, dmax=4, omin=2, omax=4)
+generator = Generator(demand_bound=6, dmin=1, dmax=7, omin=1, omax=3)
 startTime = time.time()
 solutions = generator.generate_solutions(7)
 stopTime = time.time()
