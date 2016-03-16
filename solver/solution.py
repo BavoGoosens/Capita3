@@ -1,6 +1,7 @@
 import sys
 import argparse
 import random
+from generator import Generator
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-t", "--timespan",
@@ -41,8 +42,10 @@ def main(argv):
         ondaysmax = 4
     if demand is None or len(demand) < timespan or len(demand) > timespan:
         print("There was an issue with the array of demand values. "
-              "Make sure it is exactly as long as the timespan you provided! We'll just use random values otherwise \n")
-        demand = generate_demand(timespan)
+              "Make sure it is exactly as long as the timespan you provided! "
+              "We'll just use random values otherwise. \n")
+        generator = Generator()
+        demand = generator.generate_demand(timespan)
 
     print("Overview for the planning problem:" + "\n>> timespan: " + str(timespan) +
           "\n>> demand for the timespan: " + str(demand) +
@@ -50,12 +53,6 @@ def main(argv):
           "\n>> max number of free days: " + str(offdaysmax) +
           "\n>> min number of work days: " + str(ondaysmin) +
           "\n>> max number of work days: " + str(ondaysmax))
-
-def generate_demand(timespan):
-    result = list()
-    for day in range(0, timespan):
-        result.append(random.randint(0, timespan))
-    return result
 
 
 
