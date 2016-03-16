@@ -8,9 +8,9 @@ def flatten(element, ll):
         if isinstance(element, list):
             if len(element) == 0:
                 res = ll.couple()
+                possibles.append(res)
                 print(res)
             else:
-                print("sup")
                 head = element[0]
                 tail = element[1]
                 ll.add(head)
@@ -31,7 +31,7 @@ generator = Generator(6, 3, 5, 2, 3)
 startTime = time.time()
 solutions = generator.generate_solutions(5)
 stopTime = time.time()
-print str(stopTime-startTime)
+print(str(stopTime-startTime))
 ll = LinkedList()
 
 flatten(solutions, ll)

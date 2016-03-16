@@ -8,10 +8,10 @@ class LinkedList(object):
 
     def couple(self):
         if self.previous is None:
-            return self.currentList
+            return list()
         else:
             coupled_list = self.previous.couple()
-            coupled_list.append(self.currentList)
+            coupled_list += self.currentList
             return coupled_list
 
     def add(self, entry):
