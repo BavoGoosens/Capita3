@@ -48,11 +48,11 @@ for permutation_row in permutations:
         if permutation not in filtered_permutations and generator.is_valid(permutation):
             filtered_permutations.append(permutation)
 filtered_permutations = filtered_permutations
-print ""
-print "Filtered permutations:"
+print("")
+print("Filtered permutations:")
 for permutation in filtered_permutations:
-    print permutation
-print str(len(filtered_permutations))+" valid permutations"
+    print(permutation)
+print(str(len(filtered_permutations))+" valid permutations")
 
 
 
