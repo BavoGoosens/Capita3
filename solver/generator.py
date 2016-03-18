@@ -80,11 +80,11 @@ class Generator(object):
             previous_element = element
         if max_conseq_ones < conseq_ones:
             max_conseq_ones = conseq_ones
-        if min_conseq_ones > conseq_ones:
+        if min_conseq_ones > conseq_ones > 0:
             min_conseq_ones = conseq_ones
         if max_conseq_zeros < conseq_zeros:
             max_conseq_zeros = conseq_zeros
-        if min_conseq_zeros > conseq_zeros:
+        if min_conseq_zeros > conseq_zeros > 0:
             min_conseq_zeros = conseq_zeros
         bool1 = min_conseq_zeros >= self.omin
         bool2 = max_conseq_zeros <= self.omax
