@@ -53,31 +53,25 @@ class Generator(object):
         conseq_zeros = 0
         previous_element = None
         for element in permutation:
-            if previous_element is not None:
-                if element == previous_element:
-                    if element == 0:
-                        conseq_zeros += 1
-                    else:
-                        conseq_ones += 1
-                else:
-                    if previous_element == 1:
-                        if max_conseq_ones < conseq_ones:
-                            max_conseq_ones = conseq_ones
-                        if min_conseq_ones > conseq_ones:
-                            min_conseq_ones = conseq_ones
-                        conseq_zeros = 1
-                    else:
-                        if max_conseq_zeros < conseq_zeros:
-                            max_conseq_zeros = conseq_zeros
-                        if min_conseq_zeros > conseq_zeros:
-                            min_conseq_zeros = conseq_zeros
-                        conseq_ones = 1
+            if element == 0:
+                conseq_zeros += 1
             else:
-                if element == 1:
-                    conseq_ones = 1
+                conseq_ones += 1
+            if previous_element is not None and element != previous_element:
+                if previous_element == 1:
+                    if max_conseq_ones < conseq_ones:
+                        max_conseq_ones = conseq_ones
+                    if min_conseq_ones > conseq_ones:
+                        min_conseq_ones = conseq_ones
+                    conseq_ones = 0
                 else:
-                    conseq_zeros = 1
+                    if max_conseq_zeros < conseq_zeros:
+                        max_conseq_zeros = conseq_zeros
+                    if min_conseq_zeros > conseq_zeros:
+                        min_conseq_zeros = conseq_zeros
+                    conseq_zeros = 0
             previous_element = element
+
         if max_conseq_ones < conseq_ones:
             max_conseq_ones = conseq_ones
         if min_conseq_ones > conseq_ones > 0:
