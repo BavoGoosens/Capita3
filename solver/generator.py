@@ -65,19 +65,32 @@ class Generator(object):
                             max_conseq_ones = conseq_ones
                         if min_conseq_ones > conseq_ones:
                             min_conseq_ones = conseq_ones
-                        conseq_ones = 0
+                        conseq_zeros = 1
                     else:
                         if max_conseq_zeros < conseq_zeros:
                             max_conseq_zeros = conseq_zeros
                         if min_conseq_zeros > conseq_zeros:
                             min_conseq_zeros = conseq_zeros
-                        conseq_zeros = 0
+                        conseq_ones = 1
             else:
                 if element == 1:
-                    conseq_ones += 1
+                    conseq_ones = 1
                 else:
-                    conseq_zeros += 1
+                    conseq_zeros = 1
             previous_element = element
+        if max_conseq_ones < conseq_ones:
+            max_conseq_ones = conseq_ones
+        if min_conseq_ones > conseq_ones:
+            min_conseq_ones = conseq_ones
+        if max_conseq_zeros < conseq_zeros:
+            max_conseq_zeros = conseq_zeros
+        if min_conseq_zeros > conseq_zeros:
+            min_conseq_zeros = conseq_zeros
+        bool1 = min_conseq_zeros >= self.omin
+        bool2 = max_conseq_zeros <= self.omax
+        bool3 = min_conseq_ones >= self.dmin
+        bool4 = max_conseq_ones <= self.dmax
+        return bool1 and bool2 and bool3 and bool4
 
 
 
