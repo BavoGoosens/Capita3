@@ -66,7 +66,7 @@ class Generator(object):
                 if permutation not in filtered_permutations and self.is_valid(permutation):
                     filtered_permutations.append(permutation)
         filtered_permutations = filtered_permutations
-        return  filtered_permutations
+        return filtered_permutations
 
     def is_valid(self, permutation):
         max_conseq_ones = 0

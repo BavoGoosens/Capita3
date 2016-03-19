@@ -27,7 +27,7 @@ def main(argv):
     offdaysmin = args.offdaymin
     offdaysmax = args.offdaymax
     ondaysmin = args.ondaymin
-    ondaysmax =  args.ondaymax
+    ondaysmax = args.ondaymax
     demand = args.demand
     # Set some default values
     if timespan is None:
