@@ -1,7 +1,11 @@
+"""
+This class represents a simple linked list.
+It is used to generate the possible working
+schedules in our solver.
+"""
 
 
 class LinkedList(object):
-
     def __init__(self, previous=None):
         self.previous = previous
         self.currentList = list()
