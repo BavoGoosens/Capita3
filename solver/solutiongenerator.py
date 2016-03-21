@@ -1,12 +1,20 @@
 import random
+from collections import defaultdict
+
 import numpy as np
+import pandas as pd
+import random as rnd
+import time
 
 from linked_list import LinkedList
 
 
-class Generator(object):
+class SolutionGenerator(object):
+    options = defaultdict(list)
     possibles = list()
+    already_generated = list()
     demand_bound = None
+    demand = list()
     dmin = None
     dmax = None
     omin = None
@@ -19,9 +27,34 @@ class Generator(object):
         self.omin = omin
         self.omax = omax
 
-    def generate_demand(self, timespan):
+    def run(self, time_span=7, demand=None):
+        start_time = time.time()
+        filtered_permutations = self.generate_all_possible_working_schedules(time_span)
+        stop_time = time.time()
+        print(str(stop_time - start_time))
+
+        # print("")
+        # print("Filtered permutations:")
+        # for permutation in filtered_permutations:
+        #     print(permutation)
+        # print(str(len(filtered_permutations)) + " valid permutations")
+        if demand is None:
+            self.demand = self.generate_demand(time_span)
+        else:
+            self.demand = demand
+        print(demand)
+
+        # Navigate the possible work assignments faster
+
+        for sol in filtered_permutations:
+            col = 0
+            for col in range(0, len(sol)):
+                if sol[col] == 1:
+                    self.options[col].append(sol)
+
+    def generate_demand(self, time_span):
         result = list()
-        for day in range(0, timespan):
+        for day in range(0, time_span):
             result.append(random.randint(0, self.demand_bound))
         return result
 
@@ -48,8 +81,8 @@ class Generator(object):
                 return [0, self.generate_initial_working_schedules(length - 1, 0, consecutive_numbers + 1)], \
                        [1, self.generate_initial_working_schedules(length - 1, 1, 1)]
 
-    def generate_all_possible_working_schedules(self, timespan):
-        initial_solutions = self.generate_initial_working_schedules(timespan)
+    def generate_all_possible_working_schedules(self, time_span):
+        initial_solutions = self.generate_initial_working_schedules(time_span)
         ll = LinkedList()
         self.flatten(initial_solutions, ll)
         filtered_solutions = list()
@@ -67,6 +100,33 @@ class Generator(object):
                     filtered_permutations.append(permutation)
         filtered_permutations = filtered_permutations
         return filtered_permutations
+
+    def generate_random_solution(self):
+        random_solution = pd.DataFrame(index=range(0, 7))
+        curr_col = 0
+        for curr_col in range(0, len(self.demand)):
+            while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
+                new_row = pd.Series(self.options[curr_col][rnd.randint(0, len(self.options[curr_col]) - 1)])
+                random_solution = pd.concat([random_solution, new_row], axis=1)
+
+        print(random_solution.transpose().to_string())
+        solution_id = self.generate_solution_id(random_solution)
+        if solution_id not in self.already_generated:
+            self.already_generated.append(solution_id)
+            return random_solution.transpose()
+        else:
+            return self.generate_random_solution()
+
+    def generate_solution_id(self, solution):
+        fst_sum = solution.sum(axis=0)
+        snd_sum = solution.sum(axis=1)
+        id = ""
+        for s in fst_sum:
+            id += str(s)
+        for s in snd_sum:
+            id += str(s)
+        print(id)
+        return id
 
     def is_valid(self, permutation):
         max_conseq_ones = 0
