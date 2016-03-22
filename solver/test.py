@@ -1,15 +1,18 @@
 from solutiongenerator import SolutionGenerator
-import random as rnd
-import pandas as pd
-from collections import defaultdict
-import time
+from lahc import *
 
 
 generator = SolutionGenerator(demand_bound=6, dmin=1, dmax=7, omin=1, omax=3)
 demand = [3, 3, 3, 3, 3, 2, 2]
 generator.run(7, demand)
 
-solution = generator.generate_random_solution()
+# solution = generator.generate_random_solution()
+s = LAHC()
+s.set_generator(generator)
+s.lahc(20)
+sol = s.get_solution()
+print(sol.to_string())
+print(str(s.curr_best))
 # TODO: Mickey check of ge de refactor goed vindt :D
 #
 # startTime = time.time()
