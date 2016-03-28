@@ -33,16 +33,16 @@ class SolutionGenerator(object):
         stop_time = time.time()
         print(str(stop_time - start_time))
 
-        # print("")
-        # print("Filtered permutations:")
-        # for permutation in filtered_permutations:
-        #     print(permutation)
-        # print(str(len(filtered_permutations)) + " valid permutations")
+        print("")
+        print("Filtered permutations:")
+        for permutation in filtered_permutations:
+            print(permutation)
+        print(str(len(filtered_permutations)) + " valid permutations")
+
         if demand is None:
             self.demand = self.generate_demand(time_span)
         else:
             self.demand = demand
-        print(demand)
 
         # Navigate the possible work assignments faster
 
@@ -51,6 +51,7 @@ class SolutionGenerator(object):
             for col in range(0, len(sol)):
                 if sol[col] == 1:
                     self.options[col].append(sol)
+        return
 
     def generate_demand(self, time_span):
         result = list()

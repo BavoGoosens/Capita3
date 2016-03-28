@@ -1,6 +1,6 @@
 import sys
 import argparse
-import random
+from lahc import LAHC
 from solutiongenerator import SolutionGenerator
 
 parser = argparse.ArgumentParser()
@@ -41,15 +41,15 @@ def main(argv):
     if ondaysmax is None:
         ondaysmax = 4
     # TODO: merge everything from test
-    generator = SolutionGenerator(demand_bound=6, dmin=1, dmax=7, omin=1, omax=3)
-    demand = [3, 3, 3, 3, 3, 2, 2]
-    generator.run(7, demand)
+    generator = SolutionGenerator(demand_bound=6, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
+    generator.run(timespan, demand)
+    demand = generator.demand
 
-    if demand is None or len(demand) < timespan or len(demand) > timespan:
+    if len(demand) < timespan or len(demand) > timespan:
         print("There was an issue with the array of demand values. "
               "Make sure it is exactly as long as the timespan you provided! "
               "We'll just use random values otherwise. \n")
-        demand = generator.generate_demand(timespan)
+        return
 
     print("Overview for the planning problem:" + "\n>> timespan: " + str(timespan) +
           "\n>> demand for the timespan: " + str(demand) +
@@ -57,6 +57,11 @@ def main(argv):
           "\n>> max number of free days: " + str(offdaysmax) +
           "\n>> min number of work days: " + str(ondaysmin) +
           "\n>> max number of work days: " + str(ondaysmax))
+
+    s = LAHC()
+    s.set_generator(generator)
+    s.lahc(20)
+    sol = s.get_solution()
 
 
 if __name__ == "__main__":

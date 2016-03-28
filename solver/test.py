@@ -3,8 +3,7 @@ from lahc import *
 
 
 generator = SolutionGenerator(demand_bound=6, dmin=1, dmax=7, omin=1, omax=3)
-demand = [3, 3, 3, 3, 3, 2, 2]
-generator.run(7, demand)
+generator.run(7)
 
 # solution = generator.generate_random_solution()
 s = LAHC()

@@ -11,7 +11,6 @@ class LAHC:
     def set_generator(self, gen):
         self.generator = gen
 
-
     def cost_function(self, solution):
         return solution.sum().sum()
 
