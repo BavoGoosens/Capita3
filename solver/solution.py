@@ -60,7 +60,7 @@ def main(argv):
 
     s = LAHC()
     s.set_generator(generator)
-    s.lahc(20)
+    s.lahc(10)
     sol = s.get_solution()
 
 

@@ -103,7 +103,7 @@ class SolutionGenerator(object):
         return filtered_permutations
 
     def generate_random_solution(self):
-        random_solution = pd.DataFrame(index=range(0, 7))
+        '''random_solution = pd.DataFrame(index=range(0, 7))
         curr_col = 0
         for curr_col in range(0, len(self.demand)-1):
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
@@ -116,7 +116,8 @@ class SolutionGenerator(object):
             self.already_generated.append(solution_id)
             return random_solution.transpose()
         else:
-            return self.generate_random_solution()
+            return self.generate_random_solution()'''
+        return None
 
     def generate_solution_id(self, solution):
         fst_sum = solution.sum(axis=0)
