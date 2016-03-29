@@ -64,6 +64,6 @@ def main(argv):
           "\n>> min number of work days: " + str(ondaysmin) +
           "\n>> max number of work days: " + str(ondaysmax)+"\n\n")
     print(sol.to_string())
-
+    print("\nConverged after "+str(s.converge_step)+" iterations")
 if __name__ == "__main__":
     main(sys.argv[1:])

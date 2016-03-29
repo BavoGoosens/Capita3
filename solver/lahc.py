@@ -5,6 +5,8 @@ from random import random
 class LAHC:
     generator = None
     converger = 0
+    converge_step = 0
+    checks = 0
     conversion_limit = 100
     curr_best = np.inf
     solution = None
@@ -20,11 +22,13 @@ class LAHC:
     def stopping_condition(self, solution):
         if solution is None:
             return False
+        self.checks += 1
         new_cost = self.cost_function(solution)
         if new_cost < self.curr_best:
             self.curr_best = new_cost
             self.solution = solution
             self.converger = 0
+            self.converge_step = self.checks
         else:
             self.converger += 1
             if self.converger >= self.conversion_limit:
