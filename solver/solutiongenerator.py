@@ -20,6 +20,7 @@ class SolutionGenerator(object):
     dmax = None
     omin = None
     omax = None
+    time_span = 0
     recursive_calls = 0
 
     def __init__(self, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
@@ -43,6 +44,8 @@ class SolutionGenerator(object):
         else:
             self.demand = demand
 
+        self.time_span = time_span
+
         # Navigate the possible work assignments faster
 
         for sol in filtered_permutations:
@@ -64,7 +67,6 @@ class SolutionGenerator(object):
         #    print(str(self.recursive_calls)+" recursive calls")
         #sys.stdout.flush()
         if length == 0:
-            print("Return")
             return []
         if last_number is None:
             return [0, self.generate_initial_working_schedules(length - 1, 0, 1)], \
@@ -108,7 +110,7 @@ class SolutionGenerator(object):
         return filtered_permutations
 
     def generate_random_solution(self):
-        random_solution = pd.DataFrame(index=range(0, 7))
+        random_solution = pd.DataFrame(index=range(0, self.time_span))
         curr_col = 0
         for curr_col in range(0, len(self.demand)):
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
