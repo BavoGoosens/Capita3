@@ -125,8 +125,7 @@ class SolutionGenerator(object):
             self.already_generated.append(solution_id)
             return random_solution.transpose()
         else:
-            return self.generate_random_solution()
-        return None
+            return None
 
     def generate_solution_id(self, solution):
         fst_sum = solution.sum(axis=0)
