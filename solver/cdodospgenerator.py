@@ -22,30 +22,35 @@ class CDODOSPGenerator(Generator):
         schedules = self.generate_working_schedules(time_span)
         if len(schedules) < 2:
             return False
-        return self.choose_basic_schedules(schedules)
-        return True
+        return self.choose_basic_schedules(list(range(0, len(schedules))), schedules)
 
-    def choose_basic_schedules(self, schedules, chosen_indices=list(), wrong_idx=-1):
-        print("Choosing basic schedules...")
+    def choose_basic_schedules(self, possible_indices, schedules, chosen_indices=list(), wrong_idx=-1):
+        #if len(possible_indices) == 0:
+        #    return False
+
         if wrong_idx > -1:
-            chosen_index = randint(0, len(schedules)-1)
-            while chosen_index in chosen_indices or chosen_index in self.bad_schedules:
-                print("yolo")
-                chosen_index = randint(0, len(schedules)-1)
-            self.bad_schedules.append(chosen_indices[wrong_idx])
-            if len(self.bad_schedules) == len(schedules) - 1:
-                        return False
+            if len(possible_indices) == 0:
+                    return False
+            elif len(possible_indices) == 1:
+                possible_index = 0
+            else:
+                possible_index = randint(0, len(possible_indices)-1)
+            chosen_index = possible_indices[possible_index]
+            del possible_indices[possible_index]
             chosen_indices[wrong_idx] = chosen_index
         else:
             for i in range(0, self.x_param):
-                chosen_index = randint(0, len(schedules)-1)
-                while chosen_index in chosen_indices or chosen_index in self.bad_schedules:
-                    print("swag")
-                    chosen_index = randint(0, len(schedules)-1)
+                if len(possible_indices) == 0:
+                    return False
+                elif len(possible_indices) == 1:
+                    possible_index = 0
+                else:
+                    possible_index = randint(0, len(possible_indices)-1)
+                chosen_index = possible_indices[possible_index]
+                del possible_indices[possible_index]
                 chosen_indices.append(chosen_index)
 
         for index, schedule_index in enumerate(chosen_indices):
-            print("yoloswek")
             schedule = schedules[schedule_index]
             permutations = self.generate_permutations(schedule)
             for permutation in permutations:
@@ -56,8 +61,9 @@ class CDODOSPGenerator(Generator):
             for demand_idx, demand in enumerate(self.demand):
                 if demand > 0:
                     if demand_idx not in value:
+                        self.bad_schedules.append(chosen_indices[option_idx])
                         self.option_dict = defaultdict(lambda : defaultdict(list))
-                        return self.choose_basic_schedules(schedules, chosen_indices, option_idx)
+                        return self.choose_basic_schedules(possible_indices, schedules, chosen_indices, option_idx)
         return True
 
     def generate_permutations(self, schedule):
@@ -82,7 +88,6 @@ class CDODOSPGenerator(Generator):
         return filtered_solutions
 
     def generate_random_solution(self):
-        print("Generating random solution...")
         chosen_option_index = randint(0, self.x_param-1)
         options = self.option_dict[chosen_option_index]
         random_solution = DataFrame(index=range(0, self.time_span))
