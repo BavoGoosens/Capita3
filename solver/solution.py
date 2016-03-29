@@ -50,7 +50,7 @@ def main(argv):
         else:
             ondaysmax = rnd.randint(ondaysmin, timespan)
 
-    generator = SolutionGenerator(demand_bound=6, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
+    generator = SolutionGenerator(demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
     generator.run(timespan, demand)
     demand = generator.demand
 
