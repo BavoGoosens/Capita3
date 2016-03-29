@@ -43,8 +43,11 @@ class LAHC:
         iteration = 0
         while not self.stopping_condition(solution):
             new_sol = None
-            while new_sol is None:
+            counter = 0
+            while new_sol is None and counter < 10000:
+                print(str(counter), end="\r")
                 new_sol = self.generator.generate_random_solution()
+                counter += 1
             new_cost = self.cost_function(new_sol)
             virtual_beginning = mod(-iteration, list_length)
             virtual_ending = mod(virtual_beginning + list_length - 1, list_length)

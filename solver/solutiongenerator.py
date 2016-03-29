@@ -4,10 +4,9 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 import random as rnd
-import sys
-import time
 
 from linked_list import LinkedList
+from math import pow
 
 
 class SolutionGenerator(object):
@@ -22,6 +21,7 @@ class SolutionGenerator(object):
     omax = None
     time_span = 0
     recursive_calls = 0
+    number_of_different_solutions = 0
 
     def __init__(self, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
         self.demand_bound = demand_bound
@@ -51,6 +51,8 @@ class SolutionGenerator(object):
                 if index not in self.options.keys():
                     return False
 
+        self.set_number_of_different_solutions()
+
         if len(self.options) < 2:
             print("Not enough permutations...")
             return False
@@ -62,6 +64,13 @@ class SolutionGenerator(object):
         for day in range(0, time_span):
             result.append(random.randint(0, self.demand_bound))
         return result
+
+    def set_number_of_different_solutions(self):
+        self.number_of_different_solutions = 0
+        for index, demand_day in enumerate(self.demand):
+            number_of_options = len(self.options[index])
+            power = pow(demand_day, number_of_options)
+            self.number_of_different_solutions += power
 
     def generate_initial_working_schedules(self, length, last_number=None, consecutive_numbers=0):
         self.recursive_calls += 1
