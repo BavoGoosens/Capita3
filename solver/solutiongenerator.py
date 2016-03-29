@@ -137,15 +137,13 @@ class SolutionGenerator(object):
             return None
 
     def generate_solution_id(self, solution):
-        fst_sum = solution.sum(axis=0)
-        snd_sum = solution.sum(axis=1)
-        id = ""
-        for s in fst_sum:
-            id += str(s)
-        for s in snd_sum:
-            id += str(s)
-        #print(id)
-        return id
+        thing = solution.values
+        larger = ""
+        for t in thing:
+            larger += str(t)
+        larger = larger.replace(' ', '').replace('[', '').replace(']', '')
+        fingerprint = int(larger, 2)
+        return fingerprint
 
     def is_valid(self, permutation):
         max_conseq_ones = 0
