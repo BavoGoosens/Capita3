@@ -81,7 +81,7 @@ class Generator(object):
         larger = ""
         for t in thing:
             larger += str(t)
-        larger = larger.replace(' ', '').replace('[', '').replace(']', '')
+        larger = larger.replace(' ', '').replace('[', '').replace(']', '').replace('\n', '')
         fingerprint = int(larger, 2)
         return fingerprint
 

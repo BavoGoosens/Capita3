@@ -53,7 +53,7 @@ def main(argv):
             else:
                 ondaysmax = rnd.randint(ondaysmin, timespan)
 
-        generator = CDODOSPGenerator(2, demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
+        generator = CDODOSPGenerator(3, demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
         success = generator.run(timespan, demand)
         if not success:
             timespan = None
