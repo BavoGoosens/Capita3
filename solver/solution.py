@@ -1,5 +1,6 @@
 import sys
 import argparse
+import random as rnd
 from lahc import LAHC
 from solutiongenerator import SolutionGenerator
 
@@ -29,18 +30,26 @@ def main(argv):
     ondaysmin = args.ondaymin
     ondaysmax = args.ondaymax
     demand = args.demand
+
+    dummy = [5, 7, 14]
     # Set some default values
     if timespan is None:
-        timespan = 7
+        timespan = dummy[rnd.randint(0, len(dummy) - 1)]
     if offdaysmin is None:
-        offdaysmin = 1
+        offdaysmin = rnd.randint(0, timespan)
     if offdaysmax is None:
-        offdaysmax = 2
+        if ondaysmin == 0:
+            offdaysmax = rnd.randint(1, timespan)
+        else:
+            offdaysmax = rnd.randint(offdaysmin, timespan)
     if ondaysmin is None:
-        ondaysmin = 1
+        ondaysmin = rnd.randint(0, timespan)
     if ondaysmax is None:
-        ondaysmax = 4
-    # TODO: merge everything from test
+        if ondaysmin == 0:
+            ondaysmax = rnd.randint(1, timespan)
+        else:
+            ondaysmax = rnd.randint(ondaysmin, timespan)
+
     generator = SolutionGenerator(demand_bound=6, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
     generator.run(timespan, demand)
     demand = generator.demand
