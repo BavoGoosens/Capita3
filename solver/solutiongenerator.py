@@ -33,12 +33,6 @@ class SolutionGenerator(object):
     def run(self, time_span=7, demand=None):
         filtered_permutations = self.generate_all_possible_working_schedules(time_span)
 
-        print("")
-        print("Filtered permutations:")
-        for permutation in filtered_permutations:
-            print(permutation)
-        print(str(len(filtered_permutations)) + " valid permutations")
-
         if demand is None:
             self.demand = self.generate_demand(time_span)
         else:
@@ -49,11 +43,20 @@ class SolutionGenerator(object):
         # Navigate the possible work assignments faster
 
         for sol in filtered_permutations:
-            col = 0
             for col in range(0, len(sol)):
                 if sol[col] == 1:
                     self.options[col].append(sol)
-        return
+        keys = self.options.keys()
+        for index, demand_day in enumerate(self.demand):
+            if demand_day > 0:
+                if index not in self.options.keys():
+                    return False
+                
+        if len(self.options) < 2:
+            print("Not enough permutations...")
+            return False
+
+        return True
 
     def generate_demand(self, time_span):
         result = list()
@@ -117,7 +120,7 @@ class SolutionGenerator(object):
                 new_row = pd.Series(self.options[curr_col][rnd.randint(0, len(self.options[curr_col]) - 1)])
                 random_solution = pd.concat([random_solution, new_row], axis=1)
 
-        print(random_solution.transpose().to_string())
+        #print(random_solution.transpose().to_string())
         solution_id = self.generate_solution_id(random_solution)
         if solution_id not in self.already_generated:
             self.already_generated.append(solution_id)
@@ -134,7 +137,7 @@ class SolutionGenerator(object):
             id += str(s)
         for s in snd_sum:
             id += str(s)
-        print(id)
+        #print(id)
         return id
 
     def is_valid(self, permutation):

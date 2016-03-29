@@ -32,26 +32,35 @@ def main(argv):
     demand = args.demand
 
     dummy = [5, 7, 14]
-    # Set some default values
-    if timespan is None:
-        timespan = dummy[rnd.randint(0, len(dummy) - 1)]
-    if offdaysmin is None:
-        offdaysmin = rnd.randint(0, timespan)
-    if offdaysmax is None:
-        if ondaysmin == 0:
-            offdaysmax = rnd.randint(1, timespan)
-        else:
-            offdaysmax = rnd.randint(offdaysmin, timespan)
-    if ondaysmin is None:
-        ondaysmin = rnd.randint(0, timespan)
-    if ondaysmax is None:
-        if ondaysmin == 0:
-            ondaysmax = rnd.randint(1, timespan)
-        else:
-            ondaysmax = rnd.randint(ondaysmin, timespan)
+    success = False
+    while not success:
+        # Set some default values
+        if timespan is None:
+            timespan = dummy[rnd.randint(0, len(dummy) - 1)]
+        if offdaysmin is None:
+            offdaysmin = rnd.randint(0, timespan)
+        if offdaysmax is None:
+            if ondaysmin == 0:
+                offdaysmax = rnd.randint(1, timespan)
+            else:
+                offdaysmax = rnd.randint(offdaysmin, timespan)
+        if ondaysmin is None:
+            ondaysmin = rnd.randint(0, timespan)
+        if ondaysmax is None:
+            if ondaysmin == 0:
+                ondaysmax = rnd.randint(1, timespan)
+            else:
+                ondaysmax = rnd.randint(ondaysmin, timespan)
 
-    generator = SolutionGenerator(demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
-    generator.run(timespan, demand)
+        generator = SolutionGenerator(demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
+        success = generator.run(timespan, demand)
+        if not success:
+            timespan = None
+            offdaysmin = None
+            offdaysmax = None
+            ondaysmin = None
+            ondaysmax = None
+
     demand = generator.demand
 
     if len(demand) < timespan or len(demand) > timespan:
