@@ -46,12 +46,11 @@ class SolutionGenerator(object):
             for col in range(0, len(sol)):
                 if sol[col] == 1:
                     self.options[col].append(sol)
-        keys = self.options.keys()
         for index, demand_day in enumerate(self.demand):
             if demand_day > 0:
                 if index not in self.options.keys():
                     return False
-                
+
         if len(self.options) < 2:
             print("Not enough permutations...")
             return False
