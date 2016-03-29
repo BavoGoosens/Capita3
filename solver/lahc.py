@@ -3,6 +3,7 @@ from operator import mod
 from random import random
 
 class LAHC:
+
     generator = None
     converger = 0
     converge_step = 0
@@ -44,8 +45,7 @@ class LAHC:
         while not self.stopping_condition(solution):
             new_sol = None
             counter = 0
-            while new_sol is None and counter < 10000:
-                print(str(counter), end="\r")
+            while new_sol is None and counter < 1000:
                 new_sol = self.generator.generate_random_solution()
                 counter += 1
             new_cost = self.cost_function(new_sol)
@@ -56,6 +56,8 @@ class LAHC:
                 solution = new_sol
             fitness_array[virtual_ending] = self.cost_function(solution)
             iteration += 1
+            print("      ", end="\r")
+            print(self.checks, end="\r")
 
     def get_solution(self):
         return self.solution

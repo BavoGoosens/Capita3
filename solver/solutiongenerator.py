@@ -8,30 +8,20 @@ import random as rnd
 from linked_list import LinkedList
 from math import pow
 
+from generator import Generator
 
-class SolutionGenerator(object):
-    options = defaultdict(list)
+
+class SolutionGenerator(Generator):
+    #options = defaultdict(list)
     possibles = list()
     already_generated = list()
-    demand_bound = None
     demand = list()
-    dmin = None
-    dmax = None
-    omin = None
-    omax = None
     time_span = 0
     recursive_calls = 0
     number_of_different_solutions = 0
 
-    def __init__(self, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
-        self.demand_bound = demand_bound
-        self.dmin = dmin
-        self.dmax = dmax
-        self.omin = omin
-        self.omax = omax
-
     def run(self, time_span=7, demand=None):
-        filtered_permutations = self.generate_all_possible_working_schedules(time_span)
+        filtered_permutations = self.generate_working_schedules(time_span)
 
         if demand is None:
             self.demand = self.generate_demand(time_span)
@@ -99,8 +89,7 @@ class SolutionGenerator(object):
                 return [0, self.generate_initial_working_schedules(length - 1, 0, consecutive_numbers + 1)], \
                        [1, self.generate_initial_working_schedules(length - 1, 1, 1)]
 
-    def generate_all_possible_working_schedules(self, time_span):
-        print("Calculating initial solutions... This might take a while.")
+    def generate_working_schedules(self, time_span):
         initial_solutions = self.generate_initial_working_schedules(time_span)
         ll = LinkedList()
         self.flatten(initial_solutions, ll)

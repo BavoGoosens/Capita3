@@ -60,6 +60,7 @@ def main(argv):
             offdaysmax = None
             ondaysmin = None
             ondaysmax = None
+            print("Problem not solvable. Creating new random problem.")
 
     demand = generator.demand
 
