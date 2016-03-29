@@ -51,18 +51,19 @@ def main(argv):
               "We'll just use random values otherwise. \n")
         return
 
-    print("Overview for the planning problem:" + "\n>> timespan: " + str(timespan) +
-          "\n>> demand for the timespan: " + str(demand) +
-          "\n>> min number of free days: " + str(offdaysmin) +
-          "\n>> max number of free days: " + str(offdaysmax) +
-          "\n>> min number of work days: " + str(ondaysmin) +
-          "\n>> max number of work days: " + str(ondaysmax))
-
     s = LAHC()
     s.set_generator(generator)
     s.lahc(10)
     sol = s.get_solution()
 
+    print("\n\n*********** SOLUTION ***********\n")
+    print("Overview:" + "\n>> timespan: " + str(timespan) +
+          "\n>> demand for the timespan: " + str(demand) +
+          "\n>> min number of free days: " + str(offdaysmin) +
+          "\n>> max number of free days: " + str(offdaysmax) +
+          "\n>> min number of work days: " + str(ondaysmin) +
+          "\n>> max number of work days: " + str(ondaysmax)+"\n\n")
+    print(sol.to_string())
 
 if __name__ == "__main__":
     main(sys.argv[1:])

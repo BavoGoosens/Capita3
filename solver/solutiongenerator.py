@@ -105,7 +105,7 @@ class SolutionGenerator(object):
     def generate_random_solution(self):
         random_solution = pd.DataFrame(index=range(0, 7))
         curr_col = 0
-        for curr_col in range(0, len(self.demand)-1):
+        for curr_col in range(0, len(self.demand)):
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
                 new_row = pd.Series(self.options[curr_col][rnd.randint(0, len(self.options[curr_col]) - 1)])
                 random_solution = pd.concat([random_solution, new_row], axis=1)
