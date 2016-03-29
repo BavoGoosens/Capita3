@@ -4,6 +4,7 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 import random as rnd
+import sys
 import time
 
 from linked_list import LinkedList
@@ -19,6 +20,7 @@ class SolutionGenerator(object):
     dmax = None
     omin = None
     omax = None
+    recursive_calls = 0
 
     def __init__(self, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
         self.demand_bound = demand_bound
@@ -28,10 +30,7 @@ class SolutionGenerator(object):
         self.omax = omax
 
     def run(self, time_span=7, demand=None):
-        start_time = time.time()
         filtered_permutations = self.generate_all_possible_working_schedules(time_span)
-        stop_time = time.time()
-        print(str(stop_time - start_time))
 
         print("")
         print("Filtered permutations:")
@@ -60,7 +59,12 @@ class SolutionGenerator(object):
         return result
 
     def generate_initial_working_schedules(self, length, last_number=None, consecutive_numbers=0):
+        self.recursive_calls += 1
+        #if self.recursive_calls % 1000000 == 0:
+        #    print(str(self.recursive_calls)+" recursive calls")
+        #sys.stdout.flush()
         if length == 0:
+            print("Return")
             return []
         if last_number is None:
             return [0, self.generate_initial_working_schedules(length - 1, 0, 1)], \
@@ -83,6 +87,7 @@ class SolutionGenerator(object):
                        [1, self.generate_initial_working_schedules(length - 1, 1, 1)]
 
     def generate_all_possible_working_schedules(self, time_span):
+        print("Calculating initial solutions... This might take a while.")
         initial_solutions = self.generate_initial_working_schedules(time_span)
         ll = LinkedList()
         self.flatten(initial_solutions, ll)

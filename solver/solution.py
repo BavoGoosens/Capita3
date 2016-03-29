@@ -41,7 +41,7 @@ def main(argv):
     if ondaysmax is None:
         ondaysmax = 4
     # TODO: merge everything from test
-    generator = SolutionGenerator(demand_bound=6, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
+    generator = SolutionGenerator(demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
     generator.run(timespan, demand)
     demand = generator.demand
 
