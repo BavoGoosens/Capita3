@@ -49,7 +49,10 @@ def main(argv):
 
     success = False
     while not success:
-        generator = GDODOSPGenerator()
+        if x_param is None:
+            generator = GDODOSPGenerator()
+        else:
+            generator = CDODOSPGenerator(x_param)
         success = generator.run(timespan, ondaysmin, ondaysmax, offdaysmin, offdaysmax, demand)
         if not success:
             timespan = None

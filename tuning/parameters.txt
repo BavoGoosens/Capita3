@@ -3,5 +3,5 @@
 # name		switch		     type	values			[conditions (using R syntax)]
 
 listlength  "-l="            i	    (1, 200)
-# xparam      "-x="            i      (1, 200)
+xparam      "-x="            i      (1, 200)
 
