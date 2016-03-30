@@ -74,14 +74,15 @@ def main(argv):
         #print("There was an issue with the array of demand values. "
         #      "Make sure it is exactly as long as the timespan you provided! "
         #      "We'll just use random values otherwise. \n")
-        return
+        pass
 
     s = LAHC()
     s.set_generator(generator)
     s.lahc(list_length)
     sol = s.get_solution()
     # print(sol.to_string())
-    print(s.curr_best)
+
+    print(str(s.get_current_best()))
     #print("\nConverged after "+str(s.converge_step)+" iterations")
 if __name__ == "__main__":
     main(sys.argv[1:])

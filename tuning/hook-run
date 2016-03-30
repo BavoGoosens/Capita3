@@ -65,4 +65,5 @@ if [ -s "${STDOUT}" ]; then
     exit 0
 else
     error "${STDOUT}: No such file or directory"
+    error "${STDERR}"
 fi

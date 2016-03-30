@@ -68,3 +68,9 @@ class LAHC:
 
     def get_solution(self):
         return self.solution
+
+    def get_current_best(self):
+        if self.curr_best is np.inf:
+            return 999999999999999999999999999999999999999999999999999
+        else:
+            return self.curr_best
