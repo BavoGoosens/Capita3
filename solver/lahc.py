@@ -47,10 +47,13 @@ class LAHC:
                 new_sol = self.generator.generate_random_solution()
                 counter += 1
                 if counter == 200:
+                    pass
                     # print("Trouble finding new random solution...")
                 if counter == 1000:
+                    pass
                     # print("Still didn't find a new random solution...")
                 if counter == 3000:
+                    pass
                     # print("Program will probably crash...")
             if new_sol is True:
                 return
