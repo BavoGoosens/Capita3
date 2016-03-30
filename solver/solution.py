@@ -32,29 +32,10 @@ def main(argv):
     ondaysmax = args.ondaymax
     demand = args.demand
 
-    dummy = [5, 7, 14]
     success = False
     while not success:
-        # Set some default values
-        if timespan is None:
-            timespan = dummy[rnd.randint(0, len(dummy) - 1)]
-        if offdaysmin is None:
-            offdaysmin = rnd.randint(0, timespan)
-        if offdaysmax is None:
-            if ondaysmin == 0:
-                offdaysmax = rnd.randint(1, timespan)
-            else:
-                offdaysmax = rnd.randint(offdaysmin, timespan)
-        if ondaysmin is None:
-            ondaysmin = rnd.randint(0, timespan)
-        if ondaysmax is None:
-            if ondaysmin == 0:
-                ondaysmax = rnd.randint(1, timespan)
-            else:
-                ondaysmax = rnd.randint(ondaysmin, timespan)
-
-        generator = CDODOSPGenerator(3, demand_bound=2*timespan, dmin=ondaysmin, dmax=ondaysmax, omin=offdaysmin, omax=offdaysmax)
-        success = generator.run(timespan, demand)
+        generator = GDODOSPGenerator()
+        success = generator.run(timespan, ondaysmin, ondaysmax, offdaysmin, offdaysmax, demand)
         if not success:
             timespan = None
             offdaysmin = None

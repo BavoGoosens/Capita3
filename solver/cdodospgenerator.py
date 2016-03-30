@@ -16,9 +16,9 @@ class CDODOSPGenerator(Generator):
         self.option_dict = defaultdict(lambda : defaultdict(list))
         self.bad_schedules = list()
 
-    def run(self, time_span=7, demand=None):
-        self.demand = demand if demand is not None else self.generate_demand(time_span)
-        self.time_span = time_span
+    def run(self, time_span=None, dmin=None, dmax=None, omin=None, omax=None, demand=None):
+        self.time_span, self.omin, self.omax, self.dmin, self.dmax, self.demand = \
+            self.generate_parameters(time_span, omin, omax, dmin, dmax, demand)
         schedules = self.generate_working_schedules(time_span)
         if len(schedules) < 2:
             return False

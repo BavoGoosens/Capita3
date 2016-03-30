@@ -22,21 +22,33 @@ class Generator(object):
     possibles = None
     already_generated = None
 
-    def __init__(self, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
-        self.demand_bound = demand_bound
-        self.dmin = dmin
-        self.dmax = dmax
-        self.omin = omin
-        self.omax = omax
+    def __init__(self):
         self.options = defaultdict(list)
         self.possibles = list()
         self.already_generated = list()
 
-    def generate_demand(self, time_span):
+    def generate_demand(self, timespan, demand_bound):
         result = list()
-        for day in range(0, time_span):
-            result.append(randint(0, self.demand_bound))
+        for day in range(0, timespan):
+            result.append(randint(0, demand_bound))
         return result
+
+    def generate_parameters(self, timespan=None, offdaysmin=None, offdaysmax=None, ondaysmin=None, ondaysmax=None, demand=None):
+        dummy = [5, 7, 14]
+        timespan = dummy[randint(0, len(dummy) - 1)] if timespan is None else timespan
+        offdaysmin = randint(0, timespan) if offdaysmin is None else offdaysmin
+        if offdaysmin == 0:
+            offdaysmax = randint(1, timespan) if offdaysmax is None else offdaysmax
+        else:
+            offdaysmax = randint(offdaysmin, timespan) if offdaysmax is None else offdaysmax
+        ondaysmin = randint(0, timespan) if ondaysmin is None else ondaysmin
+        if ondaysmin == 0:
+            ondaysmax = randint(1, timespan) if ondaysmax is None else ondaysmax
+        else:
+            ondaysmax = randint(ondaysmin, timespan) if ondaysmax is None else ondaysmax
+        demand_bound = 2*timespan
+        demand = self.generate_demand(timespan, demand_bound) if demand is None else demand
+        return timespan, offdaysmin, offdaysmax, ondaysmin, ondaysmax, demand
 
     def get_number_of_different_solutions(self):
         if self.number_of_different_solutions is None:

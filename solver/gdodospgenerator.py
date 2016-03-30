@@ -7,9 +7,9 @@ from generator import Generator
 
 class GDODOSPGenerator(Generator):
 
-    def run(self, time_span=7, demand=None):
-        self.demand = demand if demand is not None else self.generate_demand(time_span)
-        self.time_span = time_span
+    def run(self, time_span=None, dmin=None, dmax=None, omin=None, omax=None, demand=None):
+        self.time_span, self.omin, self.omax, self.dmin, self.dmax, self.demand = \
+            self.generate_parameters(time_span, omin, omax, dmin, dmax, demand)
         schedules = self.generate_working_schedules(time_span)
         self.filter_and_set_options(schedules)
 
