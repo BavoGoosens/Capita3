@@ -43,19 +43,21 @@ class LAHC:
         while not self.stopping_condition(solution):
             new_sol = None
             counter = 0
-            while new_sol is None:
+            while new_sol is None and counter < 5000:
                 new_sol = self.generator.generate_random_solution()
                 counter += 1
                 if counter == 200:
                     pass
-                    # print("Trouble finding new random solution...")
+                    #print("I'm having trouble finding new random solution...")
                 if counter == 1000:
                     pass
-                    # print("Still didn't find a new random solution...")
+                    #print("Still didn't find a new random solution...")
                 if counter == 3000:
                     pass
-                    # print("Program will probably crash...")
-            if new_sol is True:
+                    #print("Getting tired of this...")
+                if counter == 4200:
+                    #print("Guess I will almost give up now...")
+            if new_sol is True or counter >= 5000:
                 return
             new_cost = self.cost_function(new_sol)
             virtual_beginning = mod(-iteration, list_length)
