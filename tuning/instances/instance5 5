@@ -1,0 +1,1 @@
+ -t=5 --offdaymin=0 --offdaymax=5 --ondaymin=4 --ondaymax=5 -d=1, 9, 8, 5, 3
