@@ -56,6 +56,7 @@ class LAHC:
                     pass
                     #print("Getting tired of this...")
                 if counter == 4200:
+                    pass
                     #print("Guess I will almost give up now...")
             if new_sol is True or counter >= 5000:
                 return
