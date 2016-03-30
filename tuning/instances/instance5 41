@@ -1,1 +1,1 @@
-41 5151360101010 -t=5 --offdaymin=1 --offdaymax=5 --ondaymin=1 --ondaymax=3 -d=6, 0, 10, 10, 10
+41 50344269110 -t=5 --offdaymin=0 --offdaymax=3 --ondaymin=4 --ondaymax=4 -d=2, 6, 9, 1, 10

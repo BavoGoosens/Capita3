@@ -10,7 +10,7 @@ class GDODOSPGenerator(Generator):
     def run(self, time_span=None, dmin=None, dmax=None, omin=None, omax=None, demand=None):
         self.time_span, self.omin, self.omax, self.dmin, self.dmax, self.demand = \
             self.generate_parameters(time_span, omin, omax, dmin, dmax, demand)
-        schedules = self.generate_working_schedules(time_span)
+        schedules = self.generate_working_schedules()
         self.filter_and_set_options(schedules)
 
         for index, demand_day in enumerate(self.demand):
@@ -21,8 +21,8 @@ class GDODOSPGenerator(Generator):
             return False
         return True
 
-    def generate_working_schedules(self, time_span):
-        initial_solutions = self.generate_initial_working_schedules(time_span)
+    def generate_working_schedules(self):
+        initial_solutions = self.generate_initial_working_schedules(self.time_span)
         ll = LinkedList()
         self.flatten(initial_solutions, ll)
         filtered_solutions = list()
@@ -42,7 +42,10 @@ class GDODOSPGenerator(Generator):
         return filtered_permutations
 
     def generate_random_solution(self):
+        if len(self.already_generated) == self.get_number_of_different_solutions():
+            return True
         random_solution = pd.DataFrame(index=range(0, self.time_span))
+        self.get_number_of_different_solutions()
         for curr_col in range(0, len(self.demand)):
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
                 new_row = pd.Series(self.options[curr_col][rnd.randint(0, len(self.options[curr_col]) - 1)])

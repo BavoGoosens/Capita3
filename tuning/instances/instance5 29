@@ -1,1 +1,1 @@
-29 5443552906 -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=3 --ondaymax=5 -d=5, 2, 9, 0, 6
+29 5050128254 -t=5 --offdaymin=0 --offdaymax=5 --ondaymin=0 --ondaymax=1 -d=2, 8, 2, 5, 4

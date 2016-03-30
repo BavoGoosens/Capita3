@@ -52,11 +52,11 @@ class Generator(object):
 
     def get_number_of_different_solutions(self):
         if self.number_of_different_solutions is None:
-            self.number_of_different_solutions = 0
+            self.number_of_different_solutions = 1
             for index, demand_day in enumerate(self.demand):
                 number_of_options = len(self.options[index])
-                power = pow(demand_day, number_of_options)
-                self.number_of_different_solutions += power
+                power = pow(number_of_options, demand_day)
+                self.number_of_different_solutions *= power
         return self.number_of_different_solutions
 
     def filter_and_set_options(self, options):

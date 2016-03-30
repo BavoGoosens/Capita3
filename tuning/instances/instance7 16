@@ -1,1 +1,1 @@
-66 71377[16467146] -t=7 --offdaymin=1 --offdaymax=3 --ondaymin=7 --ondaymax=7 -d=1, 6, 4, 6, 7, 14, 6
+66 73467[133412402] -t=7 --offdaymin=3 --offdaymax=4 --ondaymin=6 --ondaymax=7 -d=13, 3, 4, 12, 4, 0, 2

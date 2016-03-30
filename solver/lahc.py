@@ -16,8 +16,6 @@ class LAHC:
         self.generator = gen
 
     def cost_function(self, solution):
-        if solution is None:
-            return int(round(random()*50))
         return solution.sum().sum()
 
     def stopping_condition(self, solution):
@@ -45,9 +43,17 @@ class LAHC:
         while not self.stopping_condition(solution):
             new_sol = None
             counter = 0
-            while new_sol is None and counter < 1000:
+            while new_sol is None:
                 new_sol = self.generator.generate_random_solution()
                 counter += 1
+                if counter == 200:
+                    print("Trouble finding new random solution...")
+                if counter == 1000:
+                    print("Still didn't find a new random solution...")
+                if counter == 3000:
+                    print("Program will probably crash...")
+            if new_sol is True:
+                return
             new_cost = self.cost_function(new_sol)
             virtual_beginning = mod(-iteration, list_length)
             virtual_ending = mod(virtual_beginning + list_length - 1, list_length)
@@ -56,8 +62,6 @@ class LAHC:
                 solution = new_sol
             fitness_array[virtual_ending] = self.cost_function(solution)
             iteration += 1
-            print("      ", end="\r")
-            print(self.checks, end="\r")
 
     def get_solution(self):
         return self.solution

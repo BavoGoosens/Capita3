@@ -1,1 +1,1 @@
-53 76666[721416138] -t=7 --offdaymin=6 --offdaymax=6 --ondaymin=6 --ondaymax=6 -d=7, 2, 14, 1, 6, 13, 8
+53 70703[14211101496] -t=7 --offdaymin=0 --offdaymax=7 --ondaymin=0 --ondaymax=3 -d=14, 2, 11, 10, 14, 9, 6

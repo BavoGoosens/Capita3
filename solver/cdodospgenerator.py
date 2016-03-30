@@ -4,14 +4,15 @@ from random import randint
 from collections import defaultdict
 from pandas import Series, DataFrame, concat
 
+
 class CDODOSPGenerator(Generator):
 
     x_param = None
     option_dict = None
     bad_schedules = None
 
-    def __init__(self, x_param, demand_bound=6, dmin=1, dmax=3, omin=1, omax=2):
-        Generator.__init__(self, demand_bound, dmin, dmax, omin, omax)
+    def __init__(self, x_param):
+        Generator.__init__(self)
         self.x_param = x_param
         self.option_dict = defaultdict(lambda : defaultdict(list))
         self.bad_schedules = list()
@@ -19,7 +20,7 @@ class CDODOSPGenerator(Generator):
     def run(self, time_span=None, dmin=None, dmax=None, omin=None, omax=None, demand=None):
         self.time_span, self.omin, self.omax, self.dmin, self.dmax, self.demand = \
             self.generate_parameters(time_span, omin, omax, dmin, dmax, demand)
-        schedules = self.generate_working_schedules(time_span)
+        schedules = self.generate_working_schedules()
         if len(schedules) < 2:
             return False
         return self.choose_basic_schedules(list(range(0, len(schedules))), schedules)
@@ -67,7 +68,6 @@ class CDODOSPGenerator(Generator):
         return True
 
     def generate_permutations(self, schedule):
-        print("Generating permutations...")
         n = len(schedule)
         permutations = [[schedule[i - j] for i in range(n)] for j in range(n)]
         result_list = list()
@@ -76,9 +76,8 @@ class CDODOSPGenerator(Generator):
                 result_list.append(permutation)
         return result_list
 
-    def generate_working_schedules(self, time_span):
-        print("Generating working schedules...")
-        initial_solutions = self.generate_initial_working_schedules(time_span)
+    def generate_working_schedules(self):
+        initial_solutions = self.generate_initial_working_schedules(self.time_span)
         ll = LinkedList()
         self.flatten(initial_solutions, ll)
         filtered_solutions = list()

@@ -1,1 +1,1 @@
-62 74767[10143408] -t=7 --offdaymin=4 --offdaymax=7 --ondaymin=6 --ondaymax=7 -d=10, 1, 4, 3, 4, 0, 8
+62 71627[101106245] -t=7 --offdaymin=1 --offdaymax=6 --ondaymin=2 --ondaymax=7 -d=10, 11, 0, 6, 2, 4, 5

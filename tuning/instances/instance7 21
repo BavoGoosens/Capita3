@@ -1,1 +1,1 @@
-71 72407[1008143113] -t=7 --offdaymin=2 --offdaymax=4 --ondaymin=0 --ondaymax=7 -d=10, 0, 8, 14, 3, 1, 13
+71 72535[31014471011] -t=7 --offdaymin=2 --offdaymax=5 --ondaymin=3 --ondaymax=5 -d=3, 10, 14, 4, 7, 10, 11
