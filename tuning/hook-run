@@ -40,7 +40,7 @@ STDERR=c${CANDIDATE}.stderr
 # Otherwise, save the output to a file, and parse the result from it.
 # (If you wish to ignore segmentation faults you can use '{}' around
 # the command.)
-sudo python3 $parentdir/solver/solution.py $params $CAND_PARAMS 1> ${STDOUT} 2> ${STDERR}
+sudo python3 $parentdir/solver/solution.py ${params} ${CAND_PARAMS} 1> ${STDOUT} 2> ${STDERR}
 
 error() {
     echo "`TZ=UTC date`: error: $@"
@@ -59,6 +59,8 @@ error() {
 # It assumes that the objective value is the first number in
 # the first column of the only line starting with a digit.
 if [ -s "${STDOUT}" ]; then
+    MSSG=$(cat ${STDOUT})
+    echo "$MSSG"
     COST=$(cat ${STDOUT} | grep -e '^[[:space:]]*[+-]\?[0-9]' | cut -f1)
     echo "$COST"
     rm -f "${STDOUT}" "${STDERR}"
