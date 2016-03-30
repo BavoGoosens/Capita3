@@ -26,15 +26,14 @@ class CDODOSPGenerator(Generator):
         if self.x_param > len(schedules):
             self.x_param = len(schedules)
         boolean = self.choose_basic_schedules(list(range(0, len(schedules) - 1)), schedules)
-        # for key, value in self.option_dict.items():
-        #     if len(value) == 0:
-        #         del self.option_dict[key]
         if len(self.option_dict) == 0:
             boolean = False
         return boolean
 
-    def choose_basic_schedules(self, possible_indices, schedules, chosen_indices=list(), wrong_idx=-1):
+    def choose_basic_schedules(self, possible_indices, schedules, chosen_indices=list()):
         still_to_be_tried = self.x_param - len(self.option_dict)
+        possible_indices = [x for x in possible_indices if x < len(schedules)]
+        chosen_indices = []
 
         for i in range(0, still_to_be_tried):
             # there are no more schedules to be tried
@@ -54,7 +53,7 @@ class CDODOSPGenerator(Generator):
             try:
                 schedule = schedules[schedule_index]
             except IndexError:
-                print("Error!")
+                print("99999999999999999999999999999999999999999999999999999999999")
             permutations = self.generate_permutations(schedule)
             temp_dict = defaultdict(list)
             for permutation in permutations:
