@@ -59,8 +59,6 @@ error() {
 # It assumes that the objective value is the first number in
 # the first column of the only line starting with a digit.
 if [ -s "${STDOUT}" ]; then
-    MSSG=$(cat ${STDOUT})
-    echo "$MSSG"
     COST=$(cat ${STDOUT} | grep -e '^[[:space:]]*[+-]\?[0-9]' | cut -f1)
     echo "$COST"
     rm -f "${STDOUT}" "${STDERR}"
