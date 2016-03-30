@@ -41,6 +41,8 @@ def main(argv):
 
     if list_length is None:
         list_length = 10
+    else:
+        list_length = int(list_length)
     if x_param is None:
         x_param = 10
 
