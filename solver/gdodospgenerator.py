@@ -46,9 +46,12 @@ class GDODOSPGenerator(Generator):
             return True
         random_solution = pd.DataFrame(index=range(0, self.time_span))
         self.get_number_of_different_solutions()
-        for curr_col in range(0, len(self.demand)):
+        indices = list(range(0, len(self.demand)))
+        rnd.shuffle(indices)
+        for curr_col in indices:
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
-                new_row = pd.Series(self.options[curr_col][rnd.randint(0, len(self.options[curr_col]) - 1)])
+                random_index = rnd.randint(0, len(self.options[curr_col]) - 1)
+                new_row = pd.Series(self.options[curr_col][random_index])
                 random_solution = pd.concat([random_solution, new_row], axis=1)
         solution_id = self.generate_solution_id(random_solution)
         if solution_id not in self.already_generated:
