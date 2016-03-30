@@ -11,6 +11,10 @@ parser.add_argument("-t", "--timespan",
 parser.add_argument('-d', '--demand',
                     help='delimited list input with the demand for each day',
                     type=lambda s: [int(item) for item in s.split(',')])
+parser.add_argument("-l", "--listlength",
+                    help="The list length used by the LAHC algorithm")
+parser.add_argument("-x", "--xparam",
+                    help="The number of neighbourhoods to be considered (only useful when using cdodosp)")
 parser.add_argument("--offdaymin",
                     help="The minimum amount of consecutive off/free days  an employee needs to receive", type=int)
 parser.add_argument("--offdaymax",
@@ -31,6 +35,14 @@ def main(argv):
     ondaysmin = args.ondaymin
     ondaysmax = args.ondaymax
     demand = args.demand
+
+    list_length = args.listlength
+    x_param = args.xparam
+
+    if list_length is None:
+        list_length = 10
+    if x_param is None:
+        x_param = 10
 
     success = False
     while not success:
@@ -62,7 +74,7 @@ def main(argv):
 
     s = LAHC()
     s.set_generator(generator)
-    s.lahc(10)
+    s.lahc(list_length)
     sol = s.get_solution()
 
     print(s.curr_best)

@@ -2,8 +2,6 @@
 
 # name		switch		     type	values			[conditions (using R syntax)]
 
-timespan       "-t="                c	(5, 7, 14)
-offdaysmin     "--offdaysmin="      i  	(0, 28)
-offdaysmax     "--offdaysmax="      i  	(0, 28)
-ondaysmin      "--ondaysmin="       i  	(0, 28)
-ondaysmax      "--ondaysmax="       i  	(0, 28)
+listlength  "-l="            i	    (1, 200)
+xpara       "-x="            i      (1, 200)
+
