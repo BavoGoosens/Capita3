@@ -61,14 +61,14 @@ def main(argv):
 
     demand = generator.demand
 
-    # print("\n\n*********** SOLUTION ***********\n")
-    # print("Overview:" + "\n>> timespan: " + str(generator.time_span) +
-    #       "\n>> demand for the timespan: " + str(generator.demand) +
-    #       "\n>> min number of free days: " + str(generator.omin) +
-    #       "\n>> max number of free days: " + str(generator.omax) +
-    #       "\n>> min number of work days: " + str(generator.dmin) +
-    #       "\n>> max number of work days: " + str(generator.dmax)+
-    #       "\n>> list length: " + str(list_length) + "\n\n")
+    '''print("\n\n*********** SOLUTION ***********\n")
+    print("Overview:" + "\n>> timespan: " + str(generator.time_span) +
+          "\n>> demand for the timespan: " + str(generator.demand) +
+          "\n>> min number of free days: " + str(generator.omin) +
+          "\n>> max number of free days: " + str(generator.omax) +
+          "\n>> min number of work days: " + str(generator.dmin) +
+          "\n>> max number of work days: " + str(generator.dmax)+
+          "\n>> list length: " + str(list_length) + "\n\n")'''
 
     if len(demand) < generator.time_span or len(demand) > generator.time_span:
         #print("There was an issue with the array of demand values. "
