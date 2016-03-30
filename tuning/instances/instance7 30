@@ -1,1 +1,1 @@
- -t=7 --offdaymin=0 --offdaymax=2 --ondaymin=7 --ondaymax=7 -d=9, 0, 3, 8, 11, 5, 1
+80 73477[010108515] -t=7 --offdaymin=3 --offdaymax=4 --ondaymin=7 --ondaymax=7 -d=0, 10, 10, 8, 5, 1, 5

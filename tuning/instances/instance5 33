@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=5 --ondaymin=1 --ondaymax=5 -d=5, 6, 2, 4, 6
+33 5552596119 -t=5 --offdaymin=5 --offdaymax=5 --ondaymin=2 --ondaymax=5 -d=9, 6, 1, 1, 9

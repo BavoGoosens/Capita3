@@ -1,1 +1,1 @@
- -t=7 --offdaymin=4 --offdaymax=4 --ondaymin=7 --ondaymax=7 -d=4, 10, 1, 6, 13, 12, 7
+73 77777[48600127] -t=7 --offdaymin=7 --offdaymax=7 --ondaymin=7 --ondaymax=7 -d=4, 8, 6, 0, 0, 12, 7

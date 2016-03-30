@@ -1,1 +1,1 @@
- -t=5 --offdaymin=1 --offdaymax=1 --ondaymin=4 --ondaymax=5 -d=7, 5, 2, 3, 4
+46 5112293785 -t=5 --offdaymin=1 --offdaymax=1 --ondaymin=2 --ondaymax=2 -d=9, 3, 7, 8, 5

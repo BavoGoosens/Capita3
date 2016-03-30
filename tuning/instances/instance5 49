@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=5 --ondaymax=5 -d=10, 1, 8, 10, 2
+49 51245451073 -t=5 --offdaymin=1 --offdaymax=2 --ondaymin=4 --ondaymax=5 -d=4, 5, 10, 7, 3

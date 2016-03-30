@@ -1,1 +1,1 @@
- -t=5 --offdaymin=2 --offdaymax=2 --ondaymin=1 --ondaymax=3 -d=3, 5, 7, 9, 10
+39 55533210504 -t=5 --offdaymin=5 --offdaymax=5 --ondaymin=3 --ondaymax=3 -d=2, 10, 5, 0, 4

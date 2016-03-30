@@ -1,1 +1,1 @@
- -t=7 --offdaymin=4 --offdaymax=4 --ondaymin=2 --ondaymax=5 -d=12, 13, 4, 9, 1, 10, 14
+79 76757[814525512] -t=7 --offdaymin=6 --offdaymax=7 --ondaymin=5 --ondaymax=7 -d=8, 14, 5, 2, 5, 5, 12

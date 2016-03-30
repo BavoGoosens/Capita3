@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=5 --ondaymin=3 --ondaymax=4 -d=0, 3, 1, 9, 0
+7 5335505973 -t=5 --offdaymin=3 --offdaymax=3 --ondaymin=5 --ondaymax=5 -d=0, 5, 9, 7, 3

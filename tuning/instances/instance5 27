@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=0 --ondaymax=5 -d=6, 7, 8, 2, 4
+27 5355595636 -t=5 --offdaymin=3 --offdaymax=5 --ondaymin=5 --ondaymax=5 -d=9, 5, 6, 3, 6

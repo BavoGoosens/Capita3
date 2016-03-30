@@ -1,1 +1,1 @@
- -t=7 --offdaymin=0 --offdaymax=6 --ondaymin=1 --ondaymax=1 -d=0, 13, 11, 8, 12, 14, 6
+71 72407[1008143113] -t=7 --offdaymin=2 --offdaymax=4 --ondaymin=0 --ondaymax=7 -d=10, 0, 8, 14, 3, 1, 13

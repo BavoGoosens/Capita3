@@ -1,1 +1,1 @@
- -t=7 --offdaymin=4 --offdaymax=4 --ondaymin=0 --ondaymax=4 -d=4, 3, 12, 1, 2, 2, 8
+55 70511[00211557] -t=7 --offdaymin=0 --offdaymax=5 --ondaymin=1 --ondaymax=1 -d=0, 0, 2, 11, 5, 5, 7

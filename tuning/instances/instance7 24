@@ -1,1 +1,1 @@
- -t=7 --offdaymin=5 --offdaymax=5 --ondaymin=1 --ondaymax=1 -d=0, 0, 5, 4, 14, 2, 14
+74 77767[013058112] -t=7 --offdaymin=7 --offdaymax=7 --ondaymin=6 --ondaymax=7 -d=0, 13, 0, 5, 8, 11, 2

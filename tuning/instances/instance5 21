@@ -1,1 +1,1 @@
- -t=5 --offdaymin=5 --offdaymax=5 --ondaymin=1 --ondaymax=4 -d=10, 6, 6, 1, 0
+21 525348591010 -t=5 --offdaymin=2 --offdaymax=5 --ondaymin=3 --ondaymax=4 -d=8, 5, 9, 10, 10

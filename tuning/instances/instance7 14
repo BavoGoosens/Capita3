@@ -1,1 +1,1 @@
- -t=7 --offdaymin=1 --offdaymax=5 --ondaymin=3 --ondaymax=5 -d=6, 8, 8, 10, 14, 10, 8
+64 75755[46661512] -t=7 --offdaymin=5 --offdaymax=7 --ondaymin=5 --ondaymax=5 -d=4, 6, 6, 6, 1, 5, 12

@@ -1,1 +1,1 @@
- -t=5 --offdaymin=2 --offdaymax=3 --ondaymin=3 --ondaymax=4 -d=0, 3, 8, 9, 9
+22 50315591071 -t=5 --offdaymin=0 --offdaymax=3 --ondaymin=1 --ondaymax=5 -d=5, 9, 10, 7, 1

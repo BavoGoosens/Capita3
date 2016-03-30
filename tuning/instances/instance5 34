@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=4 --ondaymax=4 -d=10, 0, 8, 3, 3
+34 54424410092 -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=2 --ondaymax=4 -d=4, 10, 0, 9, 2

@@ -1,1 +1,1 @@
- -t=5 --offdaymin=4 --offdaymax=5 --ondaymin=2 --ondaymax=4 -d=9, 0, 8, 3, 4
+48 5035568963 -t=5 --offdaymin=0 --offdaymax=3 --ondaymin=5 --ondaymax=5 -d=6, 8, 9, 6, 3

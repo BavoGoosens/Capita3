@@ -1,1 +1,1 @@
- -t=5 --offdaymin=0 --offdaymax=1 --ondaymin=5 --ondaymax=5 -d=8, 2, 1, 3, 5
+44 5050565065 -t=5 --offdaymin=0 --offdaymax=5 --ondaymin=0 --ondaymax=5 -d=6, 5, 0, 6, 5
