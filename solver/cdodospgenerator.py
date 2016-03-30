@@ -42,7 +42,7 @@ class CDODOSPGenerator(Generator):
         else:
             for i in range(0, self.x_param):
                 if len(possible_indices) == 0:
-                    return False
+                    break
                 elif len(possible_indices) == 1:
                     possible_index = 0
                 else:
@@ -52,7 +52,10 @@ class CDODOSPGenerator(Generator):
                 chosen_indices.append(chosen_index)
 
         for index, schedule_index in enumerate(chosen_indices):
-            schedule = schedules[schedule_index]
+            try:
+                schedule = schedules[schedule_index]
+            except IndexError:
+                print("Error!")
             permutations = self.generate_permutations(schedule)
             for permutation in permutations:
                 for col in range(0, len(permutation)):
@@ -92,7 +95,14 @@ class CDODOSPGenerator(Generator):
         random_solution = DataFrame(index=range(0, self.time_span))
         for curr_col in range(0, len(self.demand)):
             while not random_solution.sum(axis=1)[curr_col] >= self.demand[curr_col]:
-                new_row = Series(options[curr_col][randint(0, len(options[curr_col]) - 1)])
+                if len(options[curr_col]) - 1 > 0:
+                    index = randint(0, len(options[curr_col]) - 1)
+                else:
+                    index = 0
+                try:
+                    new_row = Series(options[curr_col][index])
+                except IndexError:
+                    print("Hey")
                 random_solution = concat([random_solution, new_row], axis=1)
         solution_id = self.generate_solution_id(random_solution)
         if solution_id not in self.already_generated:
