@@ -57,6 +57,7 @@ def main(argv):
             offdaysmax = None
             ondaysmin = None
             ondaysmax = None
+            demand = None
             #print("Problem not solvable. Creating new random problem.")
 
     demand = generator.demand
