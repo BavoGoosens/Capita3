@@ -1,1 +1,1 @@
-38 5251561564 -t=5 --offdaymin=2 --offdaymax=5 --ondaymin=1 --ondaymax=5 -d=6, 1, 5, 6, 4
+38 5014423238 -t=5 --offdaymin=0 --offdaymax=1 --ondaymin=4 --ondaymax=4 -d=2,3,2,3,8

@@ -1,1 +1,1 @@
-11 5440442681 -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=0 --ondaymax=4 -d=4, 2, 6, 8, 1
+11 5444586242 -t=5 --offdaymin=4 --offdaymax=4 --ondaymin=4 --ondaymax=5 -d=8,6,2,4,2

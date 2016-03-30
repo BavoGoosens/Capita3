@@ -12,9 +12,9 @@ parser.add_argument('-d', '--demand',
                     help='delimited list input with the demand for each day',
                     type=lambda s: [int(item) for item in s.split(',')])
 parser.add_argument("-l", "--listlength",
-                    help="The list length used by the LAHC algorithm")
+                    help="The list length used by the LAHC algorithm", type=int)
 parser.add_argument("-x", "--xparam",
-                    help="The number of neighbourhoods to be considered (only useful when using cdodosp)")
+                    help="The number of neighbourhoods to be considered (only useful when using cdodosp)", type=int)
 parser.add_argument("--offdaymin",
                     help="The minimum amount of consecutive off/free days  an employee needs to receive", type=int)
 parser.add_argument("--offdaymax",
@@ -43,6 +43,7 @@ def main(argv):
         list_length = 10
     else:
         list_length = int(list_length)
+
     if x_param is None:
         x_param = 10
 
@@ -66,7 +67,8 @@ def main(argv):
           "\n>> min number of free days: " + str(generator.omin) +
           "\n>> max number of free days: " + str(generator.omax) +
           "\n>> min number of work days: " + str(generator.dmin) +
-          "\n>> max number of work days: " + str(generator.dmax)+"\n\n")
+          "\n>> max number of work days: " + str(generator.dmax)+
+          "\n>> list length: " + str(list_length) + "\n\n")
 
     if len(demand) < generator.time_span or len(demand) > generator.time_span:
         #print("There was an issue with the array of demand values. "
@@ -78,7 +80,7 @@ def main(argv):
     s.set_generator(generator)
     s.lahc(list_length)
     sol = s.get_solution()
-    print(sol.to_string())
+    # print(sol.to_string())
     print(s.curr_best)
     #print("\nConverged after "+str(s.converge_step)+" iterations")
 if __name__ == "__main__":

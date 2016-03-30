@@ -1,1 +1,1 @@
-6 5155542236 -t=5 --offdaymin=1 --offdaymax=5 --ondaymin=5 --ondaymax=5 -d=4, 2, 2, 3, 6
+6 555031044110 -t=5 --offdaymin=5 --offdaymax=5 --ondaymin=0 --ondaymax=3 -d=10,4,4,1,10

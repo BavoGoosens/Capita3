@@ -1,1 +1,1 @@
-46 5051354562 -t=5 --offdaymin=0 --offdaymax=5 --ondaymin=1 --ondaymax=3 -d=5, 4, 5, 6, 2
+46 511221070109 -t=5 --offdaymin=1 --offdaymax=1 --ondaymin=2 --ondaymax=2 -d=10,7,0,10,9

@@ -1,1 +1,1 @@
-57 70212[53111111812] -t=7 --offdaymin=0 --offdaymax=2 --ondaymin=1 --ondaymax=2 -d=5, 3, 11, 11, 11, 8, 12
+57 72557[131130458] -t=7 --offdaymin=2 --offdaymax=5 --ondaymin=5 --ondaymax=7 -d=13,1,13,0,4,5,8

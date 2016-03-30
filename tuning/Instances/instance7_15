@@ -1,1 +1,1 @@
-65 70355[59218312] -t=7 --offdaymin=0 --offdaymax=3 --ondaymin=5 --ondaymax=5 -d=5, 9, 2, 1, 8, 3, 12
+65 70256[045127130] -t=7 --offdaymin=0 --offdaymax=2 --ondaymin=5 --ondaymax=6 -d=0,4,5,12,7,13,0

@@ -19,14 +19,15 @@
 ###############################################################################
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 parentdir="$(dirname "$DIR")"
-EXE=sudo python3 $parentdir/solver/solution.py
 FIXED_PARAMS=""
 INSTANCE=$1
-params="$( grep -o -E '(\-t=.*)' Instances/instance14_13)"
-# echo $params
+#echo $INSTANCE
+params="$( grep -o -E '(\-t=.*)' $INSTANCE)"
+#echo $params
 CANDIDATE=$2
 shift 2 || exit 1
 CAND_PARAMS=$*
+#echo $CAND_PARAMS
 
 STDOUT=c${CANDIDATE}.stdout
 STDERR=c${CANDIDATE}.stderr
@@ -39,7 +40,7 @@ STDERR=c${CANDIDATE}.stderr
 # Otherwise, save the output to a file, and parse the result from it.
 # (If you wish to ignore segmentation faults you can use '{}' around
 # the command.)
-echo $EXE ${params} ${CAND_PARAMS} 1> ${STDOUT} 2> ${STDERR}
+sudo python3 $parentdir/solver/solution.py $params $CAND_PARAMS 1> ${STDOUT} 2> ${STDERR}
 
 error() {
     echo "`TZ=UTC date`: error: $@"
