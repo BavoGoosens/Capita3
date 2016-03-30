@@ -17,7 +17,7 @@
 # This hook should print one numerical value: the cost that must be minimized.
 # Exit with 0 if no error, with 1 in case of error
 ###############################################################################
-EXE=~/bin/program
+EXE=python3 ../solver/solution.py
 FIXED_PARAMS=""
 INSTANCE=$1
 CANDIDATE=$2
@@ -31,7 +31,7 @@ STDERR=c${CANDIDATE}.stderr
 # creating another process, but there can be no other commands after exec.
 #exec $EXE ${FIXED_PARAMS} -i $INSTANCE ${CAND_PARAMS}
 # exit 1
-# 
+#
 # Otherwise, save the output to a file, and parse the result from it.
 # (If you wish to ignore segmentation faults you can use '{}' around
 # the command.)

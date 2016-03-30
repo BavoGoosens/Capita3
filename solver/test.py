@@ -1,60 +1,23 @@
-from solutiongenerator import SolutionGenerator
-from lahc import *
+from generator import *
 
-
-generator = SolutionGenerator(demand_bound=6, dmin=1, dmax=7, omin=1, omax=3)
-generator.run(7)
-
-# solution = generator.generate_random_solution()
-s = LAHC()
-s.set_generator(generator)
-s.lahc(20)
-sol = s.get_solution()
-print(sol.to_string())
-print(str(s.curr_best))
-# TODO: Mickey check of ge de refactor goed vindt :D
-#
-# startTime = time.time()
-# filtered_permutations = generator.generate_all_possible_working_schedules(7)
-# stopTime = time.time()
-# print(str(stopTime - startTime))
-#
-# print("")
-# print("Filtered permutations:")
-# for permutation in filtered_permutations:
-#     print(permutation)
-# print(str(len(filtered_permutations)) + " valid permutations")
-#
-# # demand = generator.generate_demand(7)
-# demand = [3,3,3,3,3,2,2]
-# print(demand)
-#
-# # Navigate the possible work assignments faster
-# options = defaultdict(list)
-# for sol in filtered_permutations:
-#     col = 0
-#     for col in range(0, len(sol)):
-#         if sol[col] == 1:
-#             options[col].append(sol)
-#
-# random_solution = pd.DataFrame(index=range(0, 7))
-# curr_col = 0
-# for curr_col in range(0, len(demand)):
-#     while not random_solution.sum(axis=1)[curr_col] >= demand[curr_col]:
-#         new_row = pd.Series(options[curr_col][rnd.randint(0, len(options[curr_col]) - 1)])
-#         random_solution = pd.concat([random_solution, new_row], axis=1)
-#
-# print(random_solution.transpose().to_string())
-
-# Can be used to quickly check which solutions were already tried
-# fst_sum = random_solution.sum(axis=0)
-# snd_sum = random_solution.sum(axis=1)
-# id = ""
-# for sum in fst_sum:
-#     id += str(sum)
-# for sum in snd_sum:
-#     id += str(sum)
-# print(id)
-
-
-# print(solutions)
+file = open('../tuning/instances', 'w')
+g = Generator()
+for i in range(0, 50):
+    time_span, omin, omax, dmin, dmax, demand = g.generate_parameters(timespan=5)
+    line = " -t="+ str(time_span) + " --offdaymin=" + str(omin) + " --offdaymax=" \
+           + str(omax) + " --ondaymin=" + str(dmin)+ " --ondaymax=" + str(dmax)+ " -d=" \
+           + str(demand).replace('[', '').replace(']', '') + "\n"
+    file.write(line)
+for i in range(0,30):
+    time_span, omin, omax, dmin, dmax, demand = g.generate_parameters(timespan=7)
+    line = " -t=" + str(time_span) + " --offdaymin=" + str(omin) + " --offdaymax=" \
+           + str(omax) + " --ondaymin=" + str(dmin)+ " --ondaymax=" + str(dmax)+ " -d=" \
+           + str(demand).replace('[', '').replace(']', '') + "\n"
+    file.write(line)
+for i in range(0, 20):
+    time_span, omin, omax, dmin, dmax, demand = g.generate_parameters(timespan=14)
+    line = " -t=" + str(time_span) + " --offdaymin=" + str(omin) + " --offdaymax=" \
+           + str(omax) + " --ondaymin=" + str(dmin)+ " --ondaymax=" + str(dmax)+ " -d=" \
+           + str(demand).replace('[', '').replace(']', '') + "\n"
+    file.write(line)
+file.close()
