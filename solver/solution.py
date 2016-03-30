@@ -44,9 +44,6 @@ def main(argv):
     else:
         list_length = int(list_length)
 
-    if x_param is None:
-        x_param = 10
-
     success = False
     while not success:
         if x_param is None:
