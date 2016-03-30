@@ -23,12 +23,15 @@ class CDODOSPGenerator(Generator):
         schedules = self.generate_working_schedules()
         if len(schedules) < 2:
             return False
-        return self.choose_basic_schedules(list(range(0, len(schedules))), schedules)
+        if self.x_param > len(schedules):
+            self.x_param = len(schedules)
+        boolean = self.choose_basic_schedules(list(range(0, len(schedules))), schedules)
+        for key, value in self.option_dict.items():
+            if len(value) == 0:
+                del self.option_dict[key]
+        return boolean
 
     def choose_basic_schedules(self, possible_indices, schedules, chosen_indices=list(), wrong_idx=-1):
-        #if len(possible_indices) == 0:
-        #    return False
-
         if wrong_idx > -1:
             if len(possible_indices) == 0:
                     return False
@@ -42,7 +45,7 @@ class CDODOSPGenerator(Generator):
         else:
             for i in range(0, self.x_param):
                 if len(possible_indices) == 0:
-                    break
+                    break;
                 elif len(possible_indices) == 1:
                     possible_index = 0
                 else:
@@ -90,7 +93,10 @@ class CDODOSPGenerator(Generator):
         return filtered_solutions
 
     def generate_random_solution(self):
-        chosen_option_index = randint(0, self.x_param-1)
+        for key, value in self.option_dict.items():
+            if len(value) == 0:
+                del self.option_dict[key]
+        chosen_option_index = randint(0, len(self.option_dict)-1)
         options = self.option_dict[chosen_option_index]
         random_solution = DataFrame(index=range(0, self.time_span))
         for curr_col in range(0, len(self.demand)):
