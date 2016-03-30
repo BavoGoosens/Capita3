@@ -23,7 +23,7 @@ args = parser.parse_args()
 
 
 def main(argv):
-    print("\nWelcome to this solver :)\n")
+    #print("\nWelcome to this solver :)\n")
     # Read the supplied command line arguments
     timespan = args.timespan
     offdaysmin = args.offdaymin
@@ -42,22 +42,22 @@ def main(argv):
             offdaysmax = None
             ondaysmin = None
             ondaysmax = None
-            print("Problem not solvable. Creating new random problem.")
+            #print("Problem not solvable. Creating new random problem.")
 
     demand = generator.demand
 
-    print("\n\n*********** SOLUTION ***********\n")
-    print("Overview:" + "\n>> timespan: " + str(generator.time_span) +
-          "\n>> demand for the timespan: " + str(generator.demand) +
-          "\n>> min number of free days: " + str(generator.omin) +
-          "\n>> max number of free days: " + str(generator.omax) +
-          "\n>> min number of work days: " + str(generator.dmin) +
-          "\n>> max number of work days: " + str(generator.dmax)+"\n\n")
+    #print("\n\n*********** SOLUTION ***********\n")
+    #print("Overview:" + "\n>> timespan: " + str(generator.time_span) +
+    #      "\n>> demand for the timespan: " + str(generator.demand) +
+    #      "\n>> min number of free days: " + str(generator.omin) +
+    #      "\n>> max number of free days: " + str(generator.omax) +
+    #      "\n>> min number of work days: " + str(generator.dmin) +
+    #      "\n>> max number of work days: " + str(generator.dmax)+"\n\n")
 
     if len(demand) < generator.time_span or len(demand) > generator.time_span:
-        print("There was an issue with the array of demand values. "
-              "Make sure it is exactly as long as the timespan you provided! "
-              "We'll just use random values otherwise. \n")
+        #print("There was an issue with the array of demand values. "
+        #      "Make sure it is exactly as long as the timespan you provided! "
+        #      "We'll just use random values otherwise. \n")
         return
 
     s = LAHC()
@@ -65,7 +65,7 @@ def main(argv):
     s.lahc(10)
     sol = s.get_solution()
 
-    print(sol.to_string())
-    print("\nConverged after "+str(s.converge_step)+" iterations")
+    print(s.curr_best)
+    #print("\nConverged after "+str(s.converge_step)+" iterations")
 if __name__ == "__main__":
     main(sys.argv[1:])
