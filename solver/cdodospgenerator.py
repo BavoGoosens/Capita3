@@ -50,10 +50,7 @@ class CDODOSPGenerator(Generator):
         # generate the permutations and put them in option_dict
         evaluated_schedules = list()
         for index, schedule_index in enumerate(chosen_indices):
-            try:
-                schedule = schedules[schedule_index]
-            except IndexError:
-                print("99999999999999999999999999999999999999999999999999999999999")
+            schedule = schedules[schedule_index]
             permutations = self.generate_permutations(schedule)
             temp_dict = defaultdict(list)
             for permutation in permutations:
